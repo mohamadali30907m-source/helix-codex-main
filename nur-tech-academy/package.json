@@ -1,18 +1,19 @@
 {
-  "name": "nur-tech-academy",
+  "name": "helix-codex",
   "private": true,
   "version": "0.0.0",
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
+    "build": "vite build --emptyOutDir",
     "lint": "oxlint",
     "preview": "vite preview"
   },
   "dependencies": {
     "@splinetool/react-spline": "^4.1.0",
     "react": "^19.2.7",
-    "react-dom": "^19.2.7"
+    "react-dom": "^19.2.7",
+    "react-router-dom": "^7.18.2"
   },
   "devDependencies": {
     "@types/react": "^19.2.17",

@@ -1,4 +1,5 @@
 import Spline from '@splinetool/react-spline';
+import "./DNAViewer.css";
 
 function DNAViewer({ status = "ACTIVE" }) {
   return (

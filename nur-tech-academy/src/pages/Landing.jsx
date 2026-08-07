@@ -1,6 +1,7 @@
 import Navbar from "../components/layout/Navbar";
-import DNAViewer from "../components/DNAViewer";
-import PrimaryButton from "../components/PrimaryButton";
+import DNAViewer from "../components/ui/DNAViewer";
+import PrimaryButton from "../components/ui/PrimaryButton";
+import "./Landing.css";
 
 function Landing({ 
   isOnline = true, 

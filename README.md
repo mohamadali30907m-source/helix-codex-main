@@ -15,7 +15,7 @@
 
  https://github.com/mohamadali30907m-source/helix-codex-main
 
----
+https://github.com/mohamadali30907m-source/helix-codex-backend.git  (backend)
 
 # About
 
@@ -29,7 +29,7 @@ This isn't a finished product.
 
 It's a project that grows every time I learn something new.
 
----
+
 
 # Current Features
 
@@ -42,7 +42,7 @@ It's a project that grows every time I learn something new.
 * 3D visualization with Spline
 * Component-based architecture
 
----
+
 
 # Tech Stack
 
@@ -61,7 +61,7 @@ It's a project that grows every time I learn something new.
 * PySerial
 * Biopython
 
----
+
 
 # Project Structure
 
@@ -76,13 +76,13 @@ src/
 └── main.jsx
 ```
 
----
+
 
 # Goals
 
 The long-term goal of Helix Codex is to become an interactive platform that helps students understand robotics, programming, and biomedical engineering through practical visual experiences instead of static lessons.
 
----
+
 
 # What's Next
 
@@ -95,7 +95,7 @@ Current development focuses on:
 * Better telemetry
 * Additional educational modules
 
----
+
 
 # Documentation
 
@@ -104,7 +104,7 @@ This repository also contains two additional documents.
 * **JOURNEY.md** → The personal story behind the project.
 * **JOURNAL.md** → A chronological development log showing how the project evolved over time.
 
----
+
 
 # License
 
