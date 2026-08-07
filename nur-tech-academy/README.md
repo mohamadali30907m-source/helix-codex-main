@@ -1,18 +1,34 @@
-# React + Vite
+# Helix Codex
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+Welcome to Helix Codex.
 
-Currently, two official plugins are available:
+Helix Codex is a web-based dashboard created for robotics visualization, real-time telemetry tracking, and interactive learning pathways.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## Repositories & Live Demo
 
-## React Compiler
+- Live Application: https://helix-codex.vercel.app
+- Frontend Repository: https://github.com/mohamadali30907m-source/helix-codex-main
+- Backend Repository: https://github.com/mohamadali30907m-source/helix-codex-backend
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## System Structure
 
-## Expanding the Oxlint configuration
+The project combines a React frontend with a Python backend service:
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and Oxlint's TypeScript related rules in your project.
+1. Frontend (helix-codex-main): React, Vite, CSS Modules, Three.js, Spline.
+2. Backend (helix-codex-backend): Python logic for telemetry dynamic data.
 
+## Core Features
 
+- 3D Visualizer using Spline and Three.js.
+- Dynamic telemetry dashboard for tracking system metrics.
+- Teleoperation interface for manual control toggles.
+- Curriculum matrix for structured technical learning.
+
+## Local Setup
+
+1. Clone the frontend repo: git clone https://github.com/mohamadali30907m-source/helix-codex-main.git
+2. Clone the backend repo: git clone https://github.com/mohamadali30907m-source/helix-codex-backend.git
+3. Run frontend: cd helix-codex-main -> npm install -> npm run dev
+
+---
+Built by Mohamed (17-year-old developer).
