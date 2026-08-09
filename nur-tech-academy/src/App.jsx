@@ -4,6 +4,7 @@ import Landing from "./pages/Landing";
 import Modules from "./pages/Modules";
 import Dashboard from "./pages/Dashboard";
 import Teleop from "./pages/Teleop";
+import VirtualRobotTest from "./VirtualRobotTest";
 
 function App() {
   const [systemState, setSystemState] = useState({
@@ -15,7 +16,10 @@ function App() {
   const handleInitializeNode = () => {
     setSystemState((prev) => ({
       ...prev,
-      coreStatus: prev.coreStatus === "ACTIVE" ? "SYNCING..." : "ACTIVE",
+      coreStatus:
+        prev.coreStatus === "ACTIVE"
+          ? "SYNCING..."
+          : "ACTIVE",
     }));
   };
 
@@ -32,9 +36,26 @@ function App() {
           />
         }
       />
-      <Route path="/modules" element={<Modules />} />
-      <Route path="/dashboard" element={<Dashboard />} />
-      <Route path="/teleop" element={<Teleop />} />
+
+      <Route
+        path="/modules"
+        element={<Modules />}
+      />
+
+      <Route
+        path="/dashboard"
+        element={<Dashboard />}
+      />
+
+      <Route
+        path="/teleop"
+        element={<Teleop />}
+      />
+
+      <Route
+        path="/virtual-robot"
+        element={<VirtualRobotTest />}
+      />
     </Routes>
   );
 }
