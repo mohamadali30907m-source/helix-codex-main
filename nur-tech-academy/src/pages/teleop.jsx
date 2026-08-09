@@ -1,5 +1,7 @@
 import { useState } from "react";
+import { Canvas } from "@react-three/fiber";
 import Navbar from "../components/layout/Navbar";
+import VirtualRobot from "../components/VirtualRobot/VirtualRobot";
 import "./Teleop.css";
 
 const INITIAL_JOINTS = [
@@ -45,12 +47,25 @@ function Teleop() {
 
     setGripper(0);
   };
+
   const handleEmergencyStop = () => {
-   setConnected(false);
+    setConnected(false);
   };
 
+  const leftShoulder =
+    joints.find((joint) => joint.id === "LS")?.pos ?? 0;
+
+  const leftArm =
+    joints.find((joint) => joint.id === "LA")?.pos ?? 0;
+
+  const rightShoulder =
+    joints.find((joint) => joint.id === "RS")?.pos ?? 0;
+
+  const rightArm =
+    joints.find((joint) => joint.id === "RA")?.pos ?? 0;
+
   return (
-    <div className="teleop-page">
+    <div>
       <Navbar />
 
       <main className="main-content">
@@ -118,6 +133,7 @@ function Teleop() {
             <div className="teleop-header">
               <div>
                 <h2 className="card-title">MIMO</h2>
+
                 <p className="robot-description">
                   Virtual robotic control model
                 </p>
@@ -129,10 +145,41 @@ function Teleop() {
             </div>
 
             <div className="robot-preview">
-              <div className="robot-placeholder">
-                <span>MIMO</span>
-                <small>3D ROBOT VIEW</small>
-              </div>
+              <Canvas
+                camera={{
+                  position: [0, 0.35, 6.5],
+                  fov: 42,
+                }}
+                style={{
+                  width: "100%",
+                  height: "100%",
+                  minHeight: "500px",
+                }}
+              >
+                <ambientLight intensity={1.5} />
+
+                <directionalLight
+                  position={[4, 5, 6]}
+                  intensity={2.2}
+                />
+
+                <directionalLight
+                  position={[-4, 2, 3]}
+                  intensity={1.2}
+                />
+
+                <pointLight
+                  position={[0, 3, 4]}
+                  intensity={1.5}
+                />
+
+                <VirtualRobot
+                  leftShoulder={leftShoulder}
+                  leftArm={leftArm}
+                  rightShoulder={rightShoulder}
+                  rightArm={rightArm}
+                />
+              </Canvas>
             </div>
           </section>
 
@@ -142,25 +189,33 @@ function Teleop() {
             <div className="status-list">
               <div className="status-row">
                 <span>CONNECTION</span>
-                <strong className={connected ? "green" : "muted"}>
+
+                <strong
+                  className={connected ? "green" : "muted"}
+                >
                   {connected ? "ONLINE" : "OFFLINE"}
                 </strong>
               </div>
 
               <div className="status-row">
                 <span>SERVO SYSTEM</span>
-                <strong className={connected ? "green" : "muted"}>
+
+                <strong
+                  className={connected ? "green" : "muted"}
+                >
                   {connected ? "ACTIVE" : "IDLE"}
                 </strong>
               </div>
 
               <div className="status-row">
                 <span>CONTROL MODE</span>
+
                 <strong>MANUAL</strong>
               </div>
 
               <div className="status-row">
                 <span>ROBOT</span>
+
                 <strong>Codex</strong>
               </div>
             </div>
@@ -170,19 +225,28 @@ function Teleop() {
             <div className="teleop-header">
               <div>
                 <h2 className="card-title">JOINT CONTROL</h2>
+
                 <p className="section-description">
                   Four-axis Mimo arm control
                 </p>
               </div>
             </div>
+
             <div className="joint-controls">
               {joints.map((joint) => {
-                const percentage = ((joint.pos + 90) / 180) * 100;
+                const percentage =
+                  ((joint.pos + 90) / 180) * 100;
 
                 return (
-                  <div className="joint-control-row" key={joint.id}>
+                  <div
+                    className="joint-control-row"
+                    key={joint.id}
+                  >
                     <div className="joint-name">
-                      <span className="joint-id">{joint.id}</span>
+                      <span className="joint-id">
+                        {joint.id}
+                      </span>
+
                       <span className="joint-label">
                         {joint.name}
                       </span>
@@ -190,7 +254,9 @@ function Teleop() {
 
                     <button
                       className="joint-btn"
-                      onClick={() => moveJoint(joint.id, -5)}
+                      onClick={() =>
+                        moveJoint(joint.id, -5)
+                      }
                       disabled={!connected}
                       aria-label={`Decrease ${joint.name}`}
                     >
@@ -206,6 +272,7 @@ function Teleop() {
                           width: `${percentage}%`,
                         }}
                       />
+
                       <div
                         className="joint-center-mark"
                         aria-hidden="true"
@@ -218,7 +285,9 @@ function Teleop() {
 
                     <button
                       className="joint-btn"
-                      onClick={() => moveJoint(joint.id, 5)}
+                      onClick={() =>
+                        moveJoint(joint.id, 5)
+                      }
                       disabled={!connected}
                       aria-label={`Increase ${joint.name}`}
                     >
