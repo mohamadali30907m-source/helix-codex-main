@@ -1,9 +1,9 @@
 import { Routes, Route } from "react-router-dom";
 import { useState } from "react";
 import Landing from "./pages/Landing";
-import Modules from "./pages/Modules";
-import Dashboard from "./pages/Dashboard";
-import Teleop from "./pages/Teleop";
+import Modules from "./pages/modules";
+import Dashboard from "./pages/dashboard";
+import Teleop from "./pages/teleop";
 import VirtualRobotTest from "./VirtualRobotTest";
 
 function App() {
