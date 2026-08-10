@@ -1,22 +1,29 @@
 .modules-page {
   min-height: 100vh;
+  background: var(--bg-primary);
 }
 
 .page-header {
-  margin-bottom: 40px;
+  padding: var(--space-4) var(--space-6);
+  max-width: 1400px;
+  margin: 0 auto;
+  text-align: right;
 }
 
 .page-title {
+  font-family: var(--font-heading);
   font-size: var(--font-size-h2);
   font-weight: var(--font-weight-bold);
   letter-spacing: 3px;
   margin-bottom: var(--space-2);
   text-transform: uppercase;
+  color: var(--text-primary);
 }
 
 .page-subtitle {
+  font-family: var(--font-heading);
   font-size: var(--font-size-caption);
-  color: var(--color-text-secondary);
+  color: var(--text-secondary);
   letter-spacing: 1px;
 }
 
@@ -24,14 +31,17 @@
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
   gap: var(--space-4);
+  padding: 0 var(--space-6);
+  max-width: 1400px;
+  margin: 0 auto;
 }
 
 .module-card {
-  background: var(--card-bg);
+  background: var(--bg-panel);
   border: 1px solid var(--border-subtle);
   border-left: 3px solid;
-  border-radius: var(--card-radius);
-  padding: var(--card-padding);
+  border-radius: var(--radius-lg);
+  padding: var(--space-5);
   transition: all var(--duration-normal) var(--easing-smooth);
   backdrop-filter: blur(10px);
 }
@@ -57,20 +67,23 @@
 
 .module-duration {
   font-size: 12px;
-  color: var(--color-text-muted);
+  color: var(--text-muted);
   font-weight: var(--font-weight-medium);
 }
 
 .module-title {
+  font-family: var(--font-heading);
   font-size: 20px;
   font-weight: var(--font-weight-semibold);
   margin-bottom: 6px;
   line-height: 1.3;
+  color: var(--text-primary);
 }
 
 .module-category {
+  font-family: var(--font-body);
   font-size: 13px;
-  color: var(--color-text-secondary);
+  color: var(--text-secondary);
   margin-bottom: var(--space-4);
 }
 
@@ -98,20 +111,33 @@
 .progress-text {
   font-size: 12px;
   font-weight: var(--font-weight-semibold);
-  color: var(--color-text-secondary);
+  color: var(--text-secondary);
   min-width: 36px;
   text-align: right;
+  font-family: var(--font-mono);
 }
 
 .module-link {
   display: inline-block;
+  font-family: var(--font-heading);
   font-size: 13px;
   font-weight: var(--font-weight-semibold);
-  color: var(--color-accent-blue);
+  color: var(--accent-blue);
   letter-spacing: 1px;
   transition: color var(--duration-fast) var(--easing-smooth);
 }
 
 .module-link:hover {
-  color: var(--color-accent-purple);
+  color: var(--accent-purple);
+}
+
+@media (max-width: 768px) {
+  .modules-grid {
+    grid-template-columns: 1fr;
+    padding: 0 var(--space-4);
+  }
+  
+  .page-header {
+    padding: var(--space-4);
+  }
 }
