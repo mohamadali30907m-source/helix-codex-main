@@ -2,22 +2,21 @@
   position: relative;
   width: 220px;
   height: 220px;
-  margin: 0 auto var(--space-4);
+  margin: 0 auto 20px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
 }
 
-.dna-rotator {
+.dna-inner {
   width: 220px;
   height: 220px;
   position: relative;
-  will-change: transform; /* performance */
 }
 
-.dna-rotator a[href*="spline"],
-.dna-rotator canvas + div {
+.dna-inner a[href*="spline"],
+.dna-inner canvas + div {
   display: none !important;
 }
 
@@ -26,6 +25,6 @@
   font-size: 13px;
   letter-spacing: 2px;
   color: var(--text-secondary);
-  margin-top: var(--space-3);
+  margin-top: 12px;
   text-align: center;
 }
