@@ -1,1 +1,31 @@
-.dna-container { height: 280px !important; width: 100% !important; display: flex !important; justify-content: center !important; align-items: center !important; position: relative !important; margin-bottom: 1.5rem !important; } .dna-container canvas { max-height: 100% !important; width: auto !important; }
+.dna-wrapper {
+  position: relative;
+  width: 220px;
+  height: 220px;
+  margin: 0 auto var(--space-4);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.dna-rotator {
+  width: 220px;
+  height: 220px;
+  position: relative;
+  will-change: transform; /* performance */
+}
+
+.dna-rotator a[href*="spline"],
+.dna-rotator canvas + div {
+  display: none !important;
+}
+
+.dna-hud {
+  font-family: var(--font-heading);
+  font-size: 13px;
+  letter-spacing: 2px;
+  color: var(--text-secondary);
+  margin-top: var(--space-3);
+  text-align: center;
+}
