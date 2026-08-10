@@ -1,1 +1,36 @@
-.navbar { display: flex !important; justify-content: space-between !important; align-items: center !important; padding: 1rem 2rem !important; background: #030712 !important; border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important; } .nav-links { display: flex !important; gap: 2rem !important; list-style: none !important; margin: 0 !important; padding: 0 !important; } .nav-links a { color: #9ca3af !important; text-decoration: none !important; font-weight: 600 !important; letter-spacing: 1px !important; } .nav-links a:hover { color: #38bdf8 !important; }
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--space-4) var(--space-6);
+  max-width: 1400px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 50;
+}
+
+.nav-brand {
+  font-family: var(--font-heading);
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text-secondary);
+  letter-spacing: 0.05em;
+}
+
+.nav-links {
+  display: flex;
+  gap: var(--space-5);
+}
+
+.nav-links a {
+  font-family: var(--font-heading);
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text-secondary);
+  letter-spacing: 0.05em;
+  transition: color var(--duration-fast) var(--easing-smooth);
+}
+
+.nav-links a:hover {
+  color: var(--text-primary);
+}
