@@ -14,17 +14,22 @@ function Landing({
       <Navbar isOnline={isOnline} version={version} />
 
       <main className="main-content">
-        <section className="hero-section" aria-labelledby="hero-title">
+        <section className="hero-section">
           <DNAViewer status={coreStatus} />
 
           <header className="hero-header">
-            <h1 id="hero-title" className="hero-title">HELIX CODEX</h1>
-            <p className="hero-subtitle">DECODE • EVOLVE • MASTER</p>
+            <h1 className="hero-title">Helix Codex</h1>
+            <p className="hero-subtitle">
+              <span className="tag-decode">DECODE</span>
+              <span className="tag-dot"> • </span>
+              <span className="tag-evolve">EVOLVE</span>
+              <span className="tag-dot"> • </span>
+              <span className="tag-master">MASTER</span>
+            </p>
           </header>
 
           <div className="cta-wrapper">
             <PrimaryButton 
-              label="Initialize Node" 
               onClick={onInitialize}
               disabled={!isOnline}
             />
