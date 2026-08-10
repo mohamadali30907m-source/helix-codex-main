@@ -17,7 +17,7 @@ function Dashboard() {
             <h3 className="card-title">ROBOT STATUS</h3>
             <div className="status-display">
               <span className="status-indicator online" />
-              <span className="status-text">ONLINE — MOCK MODE</span>
+              <span className="status-text">ONLINE — LIVE</span>
             </div>
             <div className="metric-row">
               <span className="metric-label">Voltage</span>
@@ -29,7 +29,7 @@ function Dashboard() {
             </div>
             <div className="metric-row">
               <span className="metric-label">Joints</span>
-              <span className="metric-value">6 Active</span>
+              <span className="metric-value">4 Active</span>
             </div>
           </div>
 
@@ -42,7 +42,7 @@ function Dashboard() {
               </div>
               <div className="log-line">
                 <span className="log-time">19:30:02</span>
-                <span className="log-msg">Mock robot connected</span>
+                <span className="log-msg">Mimo connected</span>
               </div>
               <div className="log-line">
                 <span className="log-time">19:30:03</span>
@@ -54,16 +54,22 @@ function Dashboard() {
           <div className="dashboard-card wide">
             <h3 className="card-title">JOINT POSITIONS</h3>
             <div className="joints-list">
-              {["J1", "J2", "J3", "J4", "J5", "J6"].map((j, i) => (
-                <div key={j} className="joint-row">
-                  <span className="joint-id">{j}</span>
+              {[
+                { id: "LS", name: "Left Shoulder", angle: 0 },
+                { id: "LA", name: "Left Arm", angle: 15 },
+                { id: "RS", name: "Right Shoulder", angle: 30 },
+                { id: "RA", name: "Right Arm", angle: 45 },
+              ].map((joint) => (
+                <div key={joint.id} className="joint-row">
+                  <span className="joint-id">{joint.id}</span>
+                  <span className="joint-name">{joint.name}</span>
                   <div className="joint-bar-track">
                     <div
                       className="joint-bar-fill"
-                      style={{ width: `${20 + i * 10}%` }}
+                      style={{ width: `${((joint.angle + 90) / 180) * 100}%` }}
                     />
                   </div>
-                  <span className="joint-angle">{(i * 15).toFixed(1)}°</span>
+                  <span className="joint-angle">{joint.angle.toFixed(1)}°</span>
                 </div>
               ))}
             </div>
