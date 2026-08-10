@@ -2,23 +2,56 @@
   min-height: 100vh;
 }
 
-.teleop-grid {
+.teleop-layout {
   display: grid;
-  grid-template-columns: 300px 1fr 300px;
-  gap: var(--space-4);
+  grid-template-columns: 280px 1fr 260px;
+  grid-template-rows: auto auto;
+  gap: 20px;
+  padding: var(--space-4);
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.connection-card {
+  grid-column: 1;
+  grid-row: 1 / 3;
+}
+
+.robot-card {
+  grid-column: 2;
+  grid-row: 1;
+  min-height: 420px;
+}
+
+.robot-preview {
+  width: 100%;
+  height: 380px;
+  background: radial-gradient(circle at center, #1a1a2e 0%, #0a0a0a 100%);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+}
+
+.status-card {
+  grid-column: 3;
+  grid-row: 1;
+}
+
+.joint-card {
+  grid-column: 2;
+  grid-row: 2;
+}
+
+.gripper-card {
+  grid-column: 3;
+  grid-row: 2;
 }
 
 .teleop-card {
-  background: var(--card-bg);
+  background: rgba(15, 15, 25, 0.85);
   border: 1px solid var(--border-subtle);
-  border-radius: var(--card-radius);
+  border-radius: var(--radius-lg);
   padding: var(--space-4);
   backdrop-filter: blur(10px);
-}
-
-.teleop-card.wide {
-  grid-column: 2;
-  grid-row: 1 / 3;
 }
 
 .teleop-header {
@@ -26,61 +59,78 @@
   justify-content: space-between;
   align-items: center;
   margin-bottom: var(--space-4);
+  padding-bottom: var(--space-3);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.card-title {
+  font-family: var(--font-heading);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  color: var(--text-secondary);
+  margin: 0;
+  text-transform: uppercase;
 }
 
 .conn-badge {
-  font-size: var(--font-size-xs);
-  font-weight: var(--font-weight-bold);
-  letter-spacing: 1px;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.1em;
   padding: 4px 12px;
   border-radius: 100px;
+  text-transform: uppercase;
 }
 
 .conn-badge.online {
   background: rgba(57, 255, 20, 0.1);
-  color: var(--color-accent-green);
+  color: var(--accent-green);
   border: 1px solid rgba(57, 255, 20, 0.2);
 }
 
 .conn-badge.offline {
   background: rgba(255, 0, 55, 0.1);
-  color: var(--color-accent-red);
+  color: var(--accent-red);
   border: 1px solid rgba(255, 0, 55, 0.2);
 }
 
 .teleop-btn {
   width: 100%;
   padding: 14px;
-  margin-bottom: var(--space-3);
+  margin-bottom: 10px;
   border-radius: var(--radius-sm);
-  font-size: 12px;
-  font-weight: var(--font-weight-bold);
+  font-family: var(--font-heading);
+  font-size: 11px;
+  font-weight: 700;
   letter-spacing: 1.5px;
   text-transform: uppercase;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: transparent;
+  color: var(--text-primary);
+  cursor: pointer;
   transition: all var(--duration-fast) var(--easing-smooth);
-  border: 1px solid var(--border-subtle);
 }
 
 .teleop-btn.connect {
   background: rgba(64, 0, 255, 0.1);
-  color: var(--color-accent-blue);
+  color: var(--accent-blue);
   border-color: rgba(64, 0, 255, 0.3);
 }
 
-.teleop-btn.connect:hover {
+.teleop-btn.connect:hover:not(:disabled) {
   background: rgba(64, 0, 255, 0.2);
   box-shadow: 0 0 20px rgba(64, 0, 255, 0.2);
 }
 
 .teleop-btn.disconnect {
   background: rgba(255, 230, 0, 0.1);
-  color: var(--color-accent-yellow);
+  color: var(--accent-yellow);
   border-color: rgba(255, 230, 0, 0.3);
 }
 
 .teleop-btn.home {
   background: rgba(57, 255, 20, 0.1);
-  color: var(--color-accent-green);
+  color: var(--accent-green);
   border-color: rgba(57, 255, 20, 0.3);
 }
 
@@ -90,8 +140,9 @@
 
 .teleop-btn.estop {
   background: rgba(255, 0, 55, 0.1);
-  color: var(--color-accent-red);
+  color: var(--accent-red);
   border-color: rgba(255, 0, 55, 0.3);
+  margin-top: var(--space-2);
 }
 
 .teleop-btn.estop:hover {
@@ -104,44 +155,90 @@
   cursor: not-allowed;
 }
 
-.joint-controls {
+.status-list {
   display: flex;
   flex-direction: column;
   gap: 14px;
 }
 
-.joint-control-row {
+.status-row {
   display: flex;
+  justify-content: space-between;
   align-items: center;
-  gap: var(--space-3);
+  font-size: 12px;
+  font-family: var(--font-heading);
+}
+
+.status-row span:first-child {
+  color: var(--text-muted);
+}
+
+.status-row strong {
+  font-weight: 700;
+}
+
+.green { color: var(--accent-green); }
+.muted { color: var(--text-muted); }
+
+.robot-indicator {
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  padding: 6px 12px;
+  border-radius: var(--radius-sm);
+  background: rgba(255, 255, 255, 0.05);
+  color: var(--text-secondary);
+}
+
+.joint-controls {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.joint-control-row {
+  display: grid;
+  grid-template-columns: 120px 28px 1fr 50px 28px;
+  align-items: center;
+  gap: 10px;
+}
+
+.joint-name {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.joint-id {
+  font-size: 10px;
+  font-weight: 800;
+  color: var(--text-muted);
+  letter-spacing: 0.05em;
 }
 
 .joint-label {
-  font-size: 12px;
-  font-weight: var(--font-weight-bold);
-  color: var(--color-text-secondary);
-  min-width: 28px;
+  font-size: 11px;
+  color: var(--text-secondary);
 }
 
 .joint-btn {
-  width: 32px;
-  height: 32px;
+  width: 28px;
+  height: 28px;
+  border-radius: 6px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  background: rgba(255, 255, 255, 0.05);
+  color: var(--text-primary);
+  font-size: 14px;
+  cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
-  border: 1px solid var(--border-subtle);
-  border-radius: var(--radius-sm);
-  color: var(--color-text-primary);
-  font-size: 16px;
-  font-weight: var(--font-weight-semibold);
-  transition: all var(--duration-fast) var(--easing-smooth);
-  background: transparent;
+  transition: all var(--duration-fast);
 }
 
 .joint-btn:hover:not(:disabled) {
-  border-color: var(--color-accent-blue);
-  color: var(--color-accent-blue);
-  box-shadow: 0 0 10px rgba(64, 0, 255, 0.2);
+  border-color: var(--accent-blue);
+  color: var(--accent-blue);
 }
 
 .joint-btn:disabled {
@@ -149,52 +246,54 @@
   cursor: not-allowed;
 }
 
+.joint-bar-track {
+  position: relative;
+  height: 6px;
+  background: rgba(255, 255, 255, 0.06);
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+.joint-bar-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--accent-blue), var(--accent-purple));
+  border-radius: 3px;
+  transition: width var(--duration-normal) var(--easing-smooth);
+  opacity: 0.6;
+}
+
+.joint-bar-fill.active {
+  opacity: 1;
+  box-shadow: 0 0 8px rgba(64, 0, 255, 0.4);
+}
+
+.joint-center-mark {
+  position: absolute;
+  left: 50%;
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  background: rgba(255, 255, 255, 0.15);
+  transform: translateX(-50%);
+}
+
 .joint-value {
+  font-family: var(--font-mono);
   font-size: 12px;
-  font-weight: var(--font-weight-semibold);
-  color: var(--color-text-secondary);
-  min-width: 50px;
-  text-align: right;
-  font-family: var(--font-mono);
-}
-
-.ee-controls {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-4);
-}
-
-.ee-row {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 10px 0;
-  border-bottom: 1px solid var(--border-subtle);
-}
-
-.ee-label {
-  font-size: var(--font-size-xs);
-  font-weight: var(--font-weight-bold);
-  color: var(--color-text-secondary);
-  letter-spacing: 1px;
-}
-
-.ee-value {
-  font-size: 14px;
-  font-weight: var(--font-weight-semibold);
-  font-family: var(--font-mono);
-  color: var(--color-accent-blue);
+  font-weight: 700;
+  color: var(--text-primary);
+  text-align: center;
 }
 
 .gripper-slider {
   width: 100%;
-  margin-top: 8px;
+  height: 4px;
   -webkit-appearance: none;
   appearance: none;
-  height: 4px;
-  background: rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.08);
   border-radius: 2px;
   outline: none;
+  margin: var(--space-3) 0;
 }
 
 .gripper-slider::-webkit-slider-thumb {
@@ -202,23 +301,73 @@
   appearance: none;
   width: 16px;
   height: 16px;
-  background: var(--color-accent-green);
   border-radius: 50%;
+  background: var(--accent-green);
   cursor: pointer;
-  box-shadow: 0 0 10px var(--color-accent-green);
+  box-shadow: 0 0 10px var(--accent-green);
 }
 
 .gripper-slider:disabled {
   opacity: 0.3;
 }
 
-@media (max-width: 1024px) {
-  .teleop-grid {
-    grid-template-columns: 1fr;
-  }
+.gripper-scale {
+  display: flex;
+  justify-content: space-between;
+  font-size: 10px;
+  color: var(--text-muted);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
 
-  .teleop-card.wide {
+.gripper-value {
+  font-family: var(--font-mono);
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--accent-green);
+}
+
+.page-header {
+  text-align: right;
+  padding: var(--space-4) var(--space-4) 0;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.page-title {
+  font-family: var(--font-heading);
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  color: var(--text-primary);
+  margin: 0;
+  text-transform: uppercase;
+}
+
+.page-subtitle {
+  font-family: var(--font-heading);
+  font-size: 12px;
+  color: var(--text-muted);
+  margin-top: var(--space-2);
+}
+
+@media (max-width: 1100px) {
+  .teleop-layout {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+  }
+  
+  .connection-card,
+  .robot-card,
+  .status-card,
+  .joint-card,
+  .gripper-card {
     grid-column: 1;
     grid-row: auto;
+  }
+  
+  .joint-control-row {
+    grid-template-columns: 100px 28px 1fr 45px 28px;
+    gap: 8px;
   }
 }
