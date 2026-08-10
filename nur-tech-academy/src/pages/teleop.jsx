@@ -3,6 +3,7 @@ import { Canvas } from "@react-three/fiber";
 import Navbar from "../components/layout/Navbar";
 import VirtualRobot from "../components/VirtualRobot/VirtualRobot";
 import "./Teleop.css";
+import { OrbitControls } from "@react-three/drei";
 
 const BACKEND_URL = "http://127.0.0.1:8000";
 
@@ -385,6 +386,14 @@ function Teleop() {
                   rightShoulder={rightShoulder}
                   rightArm={rightArm}
                 />
+                <OrbitControls
+  enablePan={false}
+  enableZoom={false}
+  autoRotate
+  autoRotateSpeed={1.0}
+  minPolarAngle={Math.PI / 2.5}
+  maxPolarAngle={Math.PI / 1.8}
+/>
               </Canvas>
             </div>
           </section>
