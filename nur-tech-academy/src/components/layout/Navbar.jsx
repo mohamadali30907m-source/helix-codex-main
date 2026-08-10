@@ -9,8 +9,8 @@ function Navbar({ isOnline = true, version = "1.0" }) {
       </div>
 
       <div className="nav-links">
-        <Link to="/about">[ About ]</Link>
-        <Link to="/docs">[ DOCS ]</Link>
+        <Link to="/modules">[ Modules ]</Link>
+        <Link to="/dashboard">[ Dashboard ]</Link>
         <Link to="/teleop">[ Terminal ]</Link>
       </div>
     </nav>
