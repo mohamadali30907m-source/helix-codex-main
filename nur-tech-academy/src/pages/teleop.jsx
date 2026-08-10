@@ -16,8 +16,49 @@ const INITIAL_JOINTS = [
 function Teleop() {
   const [connected, setConnected] = useState(false);
   const [emergencyStop, setEmergencyStop] = useState(false);
+  const [mode, setMode] = useState("idle");
   const [joints, setJoints] = useState(INITIAL_JOINTS);
   const [gripper, setGripper] = useState(0);
+
+  const syncRobotState = (data) => {
+    setConnected(Boolean(data.connected));
+    setEmergencyStop(Boolean(data.emergency_stop));
+    setMode(data.mode ?? "idle");
+
+    if (data.joints) {
+      setJoints((current) =>
+        current.map((joint) => ({
+          ...joint,
+          pos:
+            typeof data.joints[joint.id] === "number"
+              ? data.joints[joint.id]
+              : joint.pos,
+        }))
+      );
+    }
+
+    if (typeof data.gripper === "number") {
+      setGripper(data.gripper);
+    }
+  };
+
+  const requestRobot = async (endpoint, options = {}) => {
+    const response = await fetch(
+      `${BACKEND_URL}${endpoint}`,
+      options
+    );
+
+    if (!response.ok) {
+      throw new Error(
+        `Backend request failed: ${response.status}`
+      );
+    }
+
+    const data = await response.json();
+    syncRobotState(data);
+
+    return data;
+  };
 
   const checkBackendStatus = async () => {
     try {
@@ -30,50 +71,63 @@ function Teleop() {
       }
 
       const data = await response.json();
-
-      setConnected(Boolean(data.online));
-      setEmergencyStop(Boolean(data.emergency_stop));
-
-      if (data.emergency_stop) {
-        setConnected(false);
-      }
+      syncRobotState(data);
     } catch (error) {
       console.error("Backend connection error:", error);
       setConnected(false);
+      setMode("idle");
     }
   };
 
   useEffect(() => {
     checkBackendStatus();
+
+    const interval = setInterval(() => {
+      checkBackendStatus();
+    }, 2000);
+
+    return () => clearInterval(interval);
   }, []);
 
-  const moveJoint = (id, delta) => {
+  const handleConnect = async () => {
+    try {
+      await requestRobot("/api/robot/connect", {
+        method: "POST",
+      });
+    } catch (error) {
+      console.error("Robot connect error:", error);
+      setConnected(false);
+    }
+  };
+
+  const handleDisconnect = async () => {
+    try {
+      await requestRobot("/api/robot/disconnect", {
+        method: "POST",
+      });
+    } catch (error) {
+      console.error("Robot disconnect error:", error);
+    }
+  };
+
+  const handleCommand = async (command) => {
     if (!connected || emergencyStop) {
       return;
     }
 
-    setJoints((current) =>
-      current.map((joint) =>
-        joint.id === id
-          ? {
-              ...joint,
-              pos: Math.max(
-                -90,
-                Math.min(90, joint.pos + delta)
-              ),
-            }
-          : joint
-      )
-    );
-  };
-
-  const handleConnect = async () => {
-    if (connected) {
-      setConnected(false);
-      return;
+    try {
+      await requestRobot("/api/robot/command", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          command,
+        }),
+      });
+    } catch (error) {
+      console.error("Robot command error:", error);
     }
-
-    await checkBackendStatus();
   };
 
   const handleHome = async () => {
@@ -82,30 +136,9 @@ function Teleop() {
     }
 
     try {
-      const response = await fetch(
-        `${BACKEND_URL}/api/robot/reset`,
-        {
-          method: "POST",
-        }
-      );
-
-      if (!response.ok) {
-        throw new Error("Robot reset request failed");
-      }
-
-      const data = await response.json();
-
-      setConnected(Boolean(data.online));
-      setEmergencyStop(Boolean(data.emergency_stop));
-
-      setJoints((current) =>
-        current.map((joint) => ({
-          ...joint,
-          pos: 0,
-        }))
-      );
-
-      setGripper(0);
+      await requestRobot("/api/robot/reset", {
+        method: "POST",
+      });
     } catch (error) {
       console.error("Robot reset error:", error);
     }
@@ -113,23 +146,76 @@ function Teleop() {
 
   const handleEmergencyStop = async () => {
     try {
-      const response = await fetch(
-        `${BACKEND_URL}/api/robot/emergency-stop`,
+      await requestRobot(
+        "/api/robot/emergency-stop",
         {
           method: "POST",
         }
       );
-
-      if (!response.ok) {
-        throw new Error("Emergency stop request failed");
-      }
-
-      const data = await response.json();
-
-      setConnected(false);
-      setEmergencyStop(Boolean(data.emergency_stop));
     } catch (error) {
       console.error("Emergency stop error:", error);
+
+      setConnected(false);
+      setEmergencyStop(true);
+      setMode("emergency_stop");
+    }
+  };
+
+  const moveJoint = async (id, delta) => {
+    if (!connected || emergencyStop) {
+      return;
+    }
+
+    const currentJoint = joints.find(
+      (joint) => joint.id === id
+    );
+
+    if (!currentJoint) {
+      return;
+    }
+
+    const nextAngle = Math.max(
+      -90,
+      Math.min(90, currentJoint.pos + delta)
+    );
+
+    try {
+      await requestRobot("/api/robot/joint", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          joint: id,
+          angle: nextAngle,
+        }),
+      });
+    } catch (error) {
+      console.error("Joint control error:", error);
+    }
+  };
+
+  const handleGripperChange = async (event) => {
+    if (!connected || emergencyStop) {
+      return;
+    }
+
+    const value = Number(event.target.value);
+
+    setGripper(value);
+
+    try {
+      await requestRobot("/api/robot/gripper", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          value,
+        }),
+      });
+    } catch (error) {
+      console.error("Gripper control error:", error);
     }
   };
 
@@ -151,7 +237,9 @@ function Teleop() {
 
       <main className="main-content">
         <section className="page-header">
-          <h1 className="page-title">TELEOPERATION</h1>
+          <h1 className="page-title">
+            TELEOPERATION
+          </h1>
 
           <p className="page-subtitle">
             Mimo Remote Control Interface
@@ -161,7 +249,9 @@ function Teleop() {
         <section className="teleop-layout">
           <aside className="teleop-card connection-card">
             <div className="teleop-header">
-              <h2 className="card-title">CONNECTION</h2>
+              <h2 className="card-title">
+                CONNECTION
+              </h2>
 
               <span
                 className={`conn-badge ${
@@ -186,16 +276,22 @@ function Teleop() {
               </span>
             </div>
 
-            <button
-              className={`teleop-btn ${
-                connected ? "disconnect" : "connect"
-              }`}
-              onClick={handleConnect}
-            >
-              {connected
-                ? "Disconnect"
-                : "Connect to Mimo"}
-            </button>
+            {!connected ? (
+              <button
+                className="teleop-btn connect"
+                onClick={handleConnect}
+                disabled={emergencyStop}
+              >
+                Connect to Mimo
+              </button>
+            ) : (
+              <button
+                className="teleop-btn disconnect"
+                onClick={handleDisconnect}
+              >
+                Disconnect
+              </button>
+            )}
 
             <button
               className="teleop-btn home"
@@ -203,6 +299,24 @@ function Teleop() {
               disabled={!connected || emergencyStop}
             >
               Home Position
+            </button>
+
+            <button
+              className="teleop-btn connect"
+              onClick={() =>
+                handleCommand(
+                  mode === "running"
+                    ? "stop"
+                    : "start"
+                )
+              }
+              disabled={
+                !connected || emergencyStop
+              }
+            >
+              {mode === "running"
+                ? "Stop Robot"
+                : "Start Robot"}
             </button>
 
             <button
@@ -216,7 +330,9 @@ function Teleop() {
           <section className="teleop-card robot-card">
             <div className="teleop-header">
               <div>
-                <h2 className="card-title">MIMO</h2>
+                <h2 className="card-title">
+                  MIMO
+                </h2>
 
                 <p className="robot-description">
                   Virtual robotic control model
@@ -227,7 +343,9 @@ function Teleop() {
                 {emergencyStop
                   ? "EMERGENCY STOP"
                   : connected
-                    ? "READY"
+                    ? mode === "running"
+                      ? "RUNNING"
+                      : "READY"
                     : "STANDBY"}
               </span>
             </div>
@@ -272,7 +390,9 @@ function Teleop() {
           </section>
 
           <aside className="teleop-card status-card">
-            <h2 className="card-title">SYSTEM STATUS</h2>
+            <h2 className="card-title">
+              SYSTEM STATUS
+            </h2>
 
             <div className="status-list">
               <div className="status-row">
@@ -283,7 +403,9 @@ function Teleop() {
                     connected ? "green" : "muted"
                   }
                 >
-                  {connected ? "ONLINE" : "OFFLINE"}
+                  {connected
+                    ? "ONLINE"
+                    : "OFFLINE"}
                 </strong>
               </div>
 
@@ -316,13 +438,25 @@ function Teleop() {
 
                 <strong>Codex</strong>
               </div>
+
+              <div className="status-row">
+                <span>ROBOT MODE</span>
+
+                <strong>
+                  {emergencyStop
+                    ? "EMERGENCY STOP"
+                    : mode.toUpperCase()}
+                </strong>
+              </div>
             </div>
           </aside>
 
           <section className="teleop-card joint-card">
             <div className="teleop-header">
               <div>
-                <h2 className="card-title">JOINT CONTROL</h2>
+                <h2 className="card-title">
+                  JOINT CONTROL
+                </h2>
 
                 <p className="section-description">
                   Four-axis Mimo arm control
@@ -353,10 +487,14 @@ function Teleop() {
                     <button
                       className="joint-btn"
                       onClick={() =>
-                        moveJoint(joint.id, -5)
+                        moveJoint(
+                          joint.id,
+                          -5
+                        )
                       }
                       disabled={
-                        !connected || emergencyStop
+                        !connected ||
+                        emergencyStop
                       }
                       aria-label={`Decrease ${joint.name}`}
                     >
@@ -366,7 +504,8 @@ function Teleop() {
                     <div className="joint-bar-track">
                       <div
                         className={`joint-bar-fill ${
-                          connected && !emergencyStop
+                          connected &&
+                          !emergencyStop
                             ? "active"
                             : ""
                         }`}
@@ -388,10 +527,14 @@ function Teleop() {
                     <button
                       className="joint-btn"
                       onClick={() =>
-                        moveJoint(joint.id, 5)
+                        moveJoint(
+                          joint.id,
+                          5
+                        )
                       }
                       disabled={
-                        !connected || emergencyStop
+                        !connected ||
+                        emergencyStop
                       }
                       aria-label={`Increase ${joint.name}`}
                     >
@@ -405,7 +548,9 @@ function Teleop() {
 
           <section className="teleop-card gripper-card">
             <div className="teleop-header">
-              <h2 className="card-title">GRIPPER</h2>
+              <h2 className="card-title">
+                GRIPPER
+              </h2>
 
               <span className="gripper-value">
                 {gripper}%
@@ -417,12 +562,10 @@ function Teleop() {
               min="0"
               max="100"
               value={gripper}
-              onChange={(event) =>
-                setGripper(
-                  Number(event.target.value)
-                )
+              onChange={handleGripperChange}
+              disabled={
+                !connected || emergencyStop
               }
-              disabled={!connected || emergencyStop}
               className="gripper-slider"
             />
 
