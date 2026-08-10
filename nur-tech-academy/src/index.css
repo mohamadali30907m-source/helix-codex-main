@@ -1,3 +1,101 @@
-@import './styles/design-tokens/index.css';
-body { background-color: #030712 !important; color: #f9fafb !important; margin: 0 !important; padding: 0 !important; overflow-x: hidden !important; font-family: monospace, system-ui, sans-serif !important; }
-.modules-container, [class*="matrix"], [class*="grid"] { display: flex !important; flex-wrap: wrap !important; gap: 1.5rem !important; justify-content: center !important; padding: 2rem !important; }
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap');
+@import '@fontsource/fredoka-one/400.css';
+
+:root {
+  --bg-primary: #0B0F19;
+  --bg-panel: rgba(11, 15, 25, 0.9);
+  
+  --accent-blue: #4000FF;
+  --accent-red: #FF0037;
+  --accent-green: #39FF14;
+  --accent-yellow: #FFE600;
+  --accent-purple: #B026FF;
+  --accent-orange: #FF6600;
+
+  --text-primary: #FFFFFF;
+  --text-secondary: #AEB8D0;
+  --text-muted: #6B7280;
+
+  --border-subtle: rgba(255, 255, 255, 0.06);
+
+  --font-logo: 'Fredoka One', cursive;
+  --font-heading: 'Space Grotesk', sans-serif;
+  --font-body: 'Space Grotesk', sans-serif;
+  --font-mono: 'Courier New', monospace;
+
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 16px;
+  --space-4: 24px;
+  --space-5: 32px;
+  --space-6: 48px;
+  --space-7: 64px;
+  --space-8: 96px;
+
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+
+  --duration-fast: 150ms;
+  --duration-normal: 300ms;
+  --easing-smooth: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: var(--font-body);
+  color: var(--text-primary);
+  background-color: var(--bg-primary);
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+#root {
+  min-height: 100vh;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+  border: none;
+  background: none;
+  color: inherit;
+}
+
+::selection {
+  background: rgba(64, 0, 255, 0.3);
+  color: var(--text-primary);
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-primary);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--accent-purple);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--accent-blue);
+}
