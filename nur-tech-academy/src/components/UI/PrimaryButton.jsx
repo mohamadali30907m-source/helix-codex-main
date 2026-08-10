@@ -1,13 +1,14 @@
 import "./PrimaryButton.css";
-function PrimaryButton({ label = "Action", onClick, disabled = false }) {
+
+function PrimaryButton({ onClick, disabled = false }) {
   return (
     <button
-      className="primary-button"
+      className="express-btn"
       onClick={onClick}
       disabled={disabled}
     >
       <span className="btn-glow" />
-      <span className="btn-label">{label}</span>
+      <span className="btn-text">EXPRESS</span>
     </button>
   );
 }
