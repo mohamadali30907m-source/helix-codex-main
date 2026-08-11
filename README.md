@@ -245,6 +245,26 @@ I rebuilt the backend documentation, continued developing the backend itself,
  rebuilt the frontend design system, improved the Teleoperation interface, added the virtual robot,
  cleaned the Git history, and tested the frontend/backend integration locally.
 
+- what I’m fixing next:
+
+I shipped this version as a functional MVP within the hackathon timeline. The main robot control and backend synchronization are working, but there are still a few UI details that I didn't have enough time to finish the way I wanted:
+
+1- Landing Page CTA Button: The main button is still using basic styling. I originally designed it with a glowing 
+
+gradient border and neon effects in Figma, so I'm planning to bring those details into the actual CSS and also fix 
+
+some of the spacing in the hero section.
+
+2- Spline DNA Watermark: The "Built with Spline" badge can overlap with the center of the DNA model on some screen 
+
+sizes. I'm working on the canvas wrapper and the overlay positioning so the model stays clear.
+
+3- Mobile Layout & Real-time Updates: The Teleoperation layout looks good on desktop, but some parts still feel too
+
+ tight on smaller screens. The current HTTP polling is also working for state updates, but I want to move to 
+ 
+ WebSockets later so joint movements can be updated with less delay.
+
 
 10- Some Problems I Had to Solve
 
