@@ -9,10 +9,10 @@ The project was developed as two separate repositories:
 
 - Frontend: <https://github.com/mohamadali30907m-source/helix-codex-main>
 - Backend:  <https://github.com/mohamadali30907m-source/helix-codex-backend>
-- Website: <https://nur-tech-academy.vercel.app>
-- DOCs : (https://drive.google.com/drive/folders/1gwiHyRosJrpIGGCNq3po-vV_tVlA5K9T?usp=sharing)
-          ![DNA Design Video](https://youtu.be/FhJd8ZqvivE)
-          
+- Website:  <https://nur-tech-academy.vercel.app>
+- DOCs :    <https://drive.google.com/drive/folders/1gwiHyRosJrpIGGCNq3po-vV_tVlA5K9T?usp=sharing>
+            <https://youtu.be/FhJd8ZqvivE>
+
 
 The separation is intentional> The frontend is responsible for the user experience and visualization,
  while the backend provides the robot-control layer.
