@@ -455,17 +455,12 @@ The evidence includes:
 - backend API testing;
 - Git commits and repository history.
 
-Screenshots are used where they actually help explain a change rather than being added just to make the README longer.
+- Screenshots 
 
 Example:
 
-![Teleoperation interface](docs/evidence/teleop-final.png)
-
-Development videos can be linked or embedded where appropriate:
-
-
-[Watch the development/demo video](VIDEO_LINK_HERE)
-
+  <https://drive.google.com/drive/folders/1gwiHyRosJrpIGGCNq3po-vV_tVlA5K9T?usp=sharing>
+  <https://youtu.be/FhJd8ZqvivE>
 
 
 17- Current Status
