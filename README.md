@@ -18,7 +18,7 @@ Videos: [Youtube](https://youtu.be/FhJd8ZqvivE)
 `3D DNA Viewer:` Interactive DNA model rendered using Spline.
 `Safety Sync:` Real-time emergency stop button that hard-locks controls on both client and server.
 `Telemetry Dashboard:` Live status metrics for battery, connection, and joint angles.
-
+![image alt](https://github.com/mohamadali30907m-source/helix-codex-main/blob/6e5454f8eae8e2058a717531f98b2a6264ceaf21/Screenshot%20(408).png)
 
 ## Architecture 
 
