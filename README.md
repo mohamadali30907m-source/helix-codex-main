@@ -27,6 +27,11 @@ The project uses a two-repo setup connected via HTTP APIs:
 `Frontend:` React, Vite, React Three Fiber (Three.js), Spline, React Router, CSS Grid/Tokens.
 `Backend:` Python + FastAPI running on `127.0.0.1:8000`.
 
+`Note:` Helix Codex project, I built it in two parts:
+        a frontend and a backend. the frontend is in `HTML Projects` folder in [GitHub main Repo](https://github.com/mohamadali30907m-source/helix-codex-main), while the backend is in `Python Projects` folder in [GitHub backend Repo](https://github.com/mohamadali30907m-source/helix-codex-backend) (I was built it with Python and FastAPI to connect with the Web). Hackatime tracks the time under these folder names separately, but both are part of the same Helix Codex project and work together through the FastAPI backend.
+
+    Also, the current version is still a work in progress. I'm still developing the project, So the version submitted here is the current working version, not the final version of the project.
+  
 ```text
 React Frontend (Vite + 3D) ... HTTP ... FastAPI Backend (Robot State)
 ```
