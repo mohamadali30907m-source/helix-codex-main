@@ -1,7 +1,7 @@
 .dna-wrapper {
   position: relative;
-  width: 220px;
-  height: 220px;
+  width: 100%;
+  max-width: 320px;
   margin: 0 auto 20px;
   display: flex;
   flex-direction: column;
@@ -10,14 +10,20 @@
 }
 
 .dna-inner {
-  width: 220px;
-  height: 220px;
-  position: relative;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-.dna-inner a[href*="spline"],
-.dna-inner canvas + div {
-  display: none !important;
+.hero-custom-img {
+  width: 100%;
+  max-height: 220px;
+  height: auto;
+  object-fit: contain;
+  filter: drop-shadow(0 8px 24px rgba(0, 0, 0, 0.45));
+  user-select: none;
+  pointer-events: none;
 }
 
 .dna-hud {
@@ -25,6 +31,6 @@
   font-size: 13px;
   letter-spacing: 2px;
   color: var(--text-secondary);
-  margin-top: 12px;
+  margin-top: 14px;
   text-align: center;
 }
