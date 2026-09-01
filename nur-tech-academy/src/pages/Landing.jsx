@@ -21,9 +21,9 @@ function Landing({
             <h1 className="hero-title">Helix Codex</h1>
             <p className="hero-subtitle">
               <span className="tag-decode">DECODE</span>
-              <span className="tag-dot"> • </span>
+              <span className="tag-dot"> </span>
               <span className="tag-evolve">EVOLVE</span>
-              <span className="tag-dot"> • </span>
+              <span className="tag-dot"> </span>
               <span className="tag-master">MASTER</span>
             </p>
           </header>
