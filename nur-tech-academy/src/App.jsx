@@ -1,4 +1,4 @@
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import Landing from "./pages/Landing";
 import Modules from "./pages/modules";
@@ -7,6 +7,7 @@ import Teleop from "./pages/teleop";
 import VirtualRobotTest from "./VirtualRobotTest";
 
 function App() {
+  const navigate = useNavigate();
   const [systemState, setSystemState] = useState({
     isOnline: true,
     version: "1.0.0",
@@ -16,11 +17,9 @@ function App() {
   const handleInitializeNode = () => {
     setSystemState((prev) => ({
       ...prev,
-      coreStatus:
-        prev.coreStatus === "ACTIVE"
-          ? "SYNCING..."
-          : "ACTIVE",
+      coreStatus: "ACTIVE",
     }));
+    navigate("/modules");
   };
 
   return (
@@ -37,25 +36,10 @@ function App() {
         }
       />
 
-      <Route
-        path="/modules"
-        element={<Modules />}
-      />
-
-      <Route
-        path="/dashboard"
-        element={<Dashboard />}
-      />
-
-      <Route
-        path="/teleop"
-        element={<Teleop />}
-      />
-
-      <Route
-        path="/virtual-robot"
-        element={<VirtualRobotTest />}
-      />
+      <Route path="/modules" element={<Modules />} />
+      <Route path="/dashboard" element={<Dashboard />} />
+      <Route path="/teleop" element={<Teleop />} />
+      <Route path="/virtual-robot" element={<VirtualRobotTest />} />
     </Routes>
   );
 }
