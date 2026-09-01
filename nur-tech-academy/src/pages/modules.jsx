@@ -9,8 +9,9 @@ const MODULES_DATA = [
     category: "Human Biology",
     level: "Beginner",
     progress: 100,
-    accentColor: "#39FF14",
+    accentColor: "#22c55e",
     lessonsCount: 8,
+    targetPath: "/dashboard"
   },
   {
     id: "ana-201",
@@ -18,8 +19,9 @@ const MODULES_DATA = [
     category: "Human Anatomy",
     level: "Intermediate",
     progress: 60,
-    accentColor: "#4000FF",
+    accentColor: "#3b82f6",
     lessonsCount: 10,
+    targetPath: "/virtual-robot"
   },
   {
     id: "neu-301",
@@ -27,8 +29,9 @@ const MODULES_DATA = [
     category: "Neuroscience",
     level: "Intermediate",
     progress: 15,
-    accentColor: "#B026FF",
+    accentColor: "#a855f7",
     lessonsCount: 12,
+    targetPath: "/teleop"
   },
   {
     id: "neu-401",
@@ -36,8 +39,9 @@ const MODULES_DATA = [
     category: "Advanced Neuroscience",
     level: "Advanced",
     progress: 0,
-    accentColor: "#FF0037",
+    accentColor: "#ef4444",
     lessonsCount: 14,
+    targetPath: "/dashboard"
   },
 ];
 
@@ -57,7 +61,7 @@ function Modules() {
             <div
               key={mod.id}
               className="module-card"
-              style={{ borderColor: mod.accentColor }}
+              style={{ borderLeftColor: mod.accentColor }}
             >
               <div className="module-header">
                 <span
@@ -85,7 +89,7 @@ function Modules() {
                 <span className="progress-text">{mod.progress}%</span>
               </div>
 
-              <Link to={`/module/${mod.id}`} className="module-link">
+              <Link to={mod.targetPath} className="module-link">
                 Enter Module →
               </Link>
             </div>
