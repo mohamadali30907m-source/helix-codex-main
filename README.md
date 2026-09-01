@@ -4,7 +4,7 @@ Helix Codex is an interactive biology learning platform combined with a 4-joint 
 ![image alt](https://github.com/mohamadali30907m-source/helix-codex-main/blob/9a97e012b89137bcad5df6b278206f89056b668f/Screenshot%20(445).png)
 
 
-Website: [Helix Codex](https://helix-codex1.vercel.app)
+Website: [Helix Codex](https://helix-codex1.vercel.app/)
 Frontend: [GitHub](https://github.com/mohamadali30907m-source/helix-codex-main)
 Backend: [GitHub](https://github.com/mohamadali30907m-source/helix-codex-backend)
 Screenshots & docs: [Google Drive](https://drive.google.com/drive/folders/1gwiHyRosJrpIGGCNq3po-vV_tVlA5K9T?usp=sharing)
