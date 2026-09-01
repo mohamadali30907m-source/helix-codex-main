@@ -1,7 +1,7 @@
 # Helix Codex
 
 Helix Codex is an interactive biology learning platform combined with a 4-joint robot teleoperation interface built for Hack Club Horizons.
-![image alt](https://github.com/mohamadali30907m-source/helix-codex-main/blob/7b04a7a6933c7bb768c107142e664b5130cadcf2/Screenshot%20(406).png)
+![image alt](https://github.com/mohamadali30907m-source/helix-codex-main/blob/9a97e012b89137bcad5df6b278206f89056b668f/Screenshot%20(445).png)
 
 
 Website: [Helix Codex](https://helix-codex1.vercel.app)
