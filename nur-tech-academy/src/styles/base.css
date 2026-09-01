@@ -17,9 +17,13 @@ body {
   font-size: var(--font-size-body);
   font-weight: var(--font-weight-regular);
   color: var(--color-text-primary);
-  background-color: var(--color-bg-primary);
+  background: #283048;
+  background: -webkit-linear-gradient(to right, #859398, #283048);
+  background: var(--color-bg-gradient);
+  background-attachment: fixed;
   line-height: 1.6;
   overflow-x: hidden;
+  min-height: 100vh;
 }
 
 #root {
@@ -49,14 +53,14 @@ button {
 }
 
 ::-webkit-scrollbar-track {
-  background: var(--color-bg-primary);
+  background: #283048;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: var(--color-accent-purple);
+  background: #859398;
   border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--color-accent-blue);
+  background: var(--color-text-secondary);
 }
