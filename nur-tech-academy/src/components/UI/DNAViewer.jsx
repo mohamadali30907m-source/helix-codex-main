@@ -1,4 +1,4 @@
-import heroImg from "../export-2026-09-01 035523.svg";
+import heroImg from "../../export-2026-09-01 035523.svg";
 import "./DNAViewer.css";
 
 function DNAViewer({ status = "ACTIVE" }) {
