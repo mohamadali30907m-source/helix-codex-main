@@ -25,7 +25,7 @@
   inset: -2px;
   border-radius: 14px;
   background: linear-gradient(90deg, #FF0040, #FF8000, #40FF00);
-  opacity: 0.9;
+  opacity: 0.4;
 }
 
 .express-btn::after {
@@ -35,7 +35,7 @@
   inset: -2px;
   border-radius: 14px;
   background: linear-gradient(90deg, #FF0040, #FF8000, #40FF00);
-  filter: blur(16px);
+  filter: blur(8px);
   opacity: 0;
   transition: opacity var(--duration-normal) var(--easing-smooth);
 }
@@ -45,7 +45,7 @@
 }
 
 .express-btn:hover:not(:disabled)::after {
-  opacity: 0.6;
+  opacity: 0.25;
 }
 
 .btn-text {
