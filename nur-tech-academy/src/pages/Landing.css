@@ -1,8 +1,27 @@
+:root {
+  --bg-primary: #0f1115;
+  --bg-card: rgba(26, 30, 39, 0.85);
+  --border-color: rgba(255, 255, 255, 0.08);
+  --text-main: #eceff4;
+  --text-sub: #8e95a5;
+  --font-logo: 'Inter', system-ui, sans-serif;
+  --font-heading: 'JetBrains Mono', monospace;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+}
+
 .landing-page {
   min-height: 100vh;
-  background: var(--bg-primary);
+  background-color: var(--bg-primary);
+  background-image: 
+    linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+  background-size: 30px 30px;
   position: relative;
   overflow: hidden;
+  color: var(--text-main);
 }
 
 .landing-page::before {
