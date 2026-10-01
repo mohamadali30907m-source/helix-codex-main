@@ -1,6 +1,6 @@
 .dashboard-page {
   min-height: 100vh;
-  background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #0f172a 100%);
+  background: transparent !important;
   color: #f8fafc;
 }
 
@@ -42,11 +42,17 @@
 }
 
 .dashboard-card {
-  background: rgba(30, 41, 59, 0.7);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(16, 22, 34, 0.85);
+  border: 1px solid rgba(56, 189, 248, 0.2);
   border-radius: var(--radius-lg, 12px);
   padding: var(--space-5, 20px);
   backdrop-filter: blur(12px);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+  transition: border-color 0.2s ease;
+}
+
+.dashboard-card:hover {
+  border-color: rgba(56, 189, 248, 0.4);
 }
 
 .dashboard-card.wide {
@@ -201,3 +207,4 @@
   .page-header {
     padding: var(--space-4, 16px);
   }
+}
