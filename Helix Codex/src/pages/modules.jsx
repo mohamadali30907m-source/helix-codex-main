@@ -1,5 +1,8 @@
 import React from 'react';
 import './Modules.css';
+import { Canvas } from '@react-three/fiber';
+import { OrbitControls } from '@react-three/drei';
+import VirtualRobot from '../components/VirtualRobot/VirtualRobot';
 
 export default function Modules() {
   const modulesList = [
@@ -67,9 +70,16 @@ export default function Modules() {
           <p className="mimo-desc">
             Virtual assistant ready to assist with 3D visualizations and module queries.
           </p>
-          <div className="mimo-preview" style={{ height: '200px', display: 'flex', alignItems: 'center', justifyContent: 'center', background: 'rgba(11, 14, 20, 0.6)', borderRadius: '8px' }}>
-            <span style={{ color: '#38bdf8', fontFamily: 'monospace' }}>[ MIMO 3D LOADING... ]</span>
+
+          <div className="mimo-preview" style={{ height: '240px', borderRadius: '8px', overflow: 'hidden', background: 'rgba(11, 14, 20, 0.6)' }}>
+            <Canvas camera={{ position: [0, 1, 3], fov: 50 }}>
+              <ambientLight intensity={1.5} />
+              <directionalLight position={[5, 5, 5]} intensity={1.2} />
+              <VirtualRobot />
+              <OrbitControls enableZoom={false} autoRotate autoRotateSpeed={2} />
+            </Canvas>
           </div>
+
           <button className="mimo-action-btn">Ask Mimo</button>
         </aside>
       </div>
