@@ -1,103 +1,78 @@
-import { Link } from "react-router-dom";
-import Navbar from "../components/layout/Navbar";
-import "./Modules.css";
+import React from 'react';
+import './Modules.css';
 
-const MODULES_DATA = [
-  {
-    id: "bio-101",
-    title: "Foundations of Human Biology",
-    category: "Human Biology",
-    level: "Beginner",
-    progress: 100,
-    accentColor: "#22c55e",
-    lessonsCount: 8,
-    targetPath: "/dashboard"
-  },
-  {
-    id: "ana-201",
-    title: "Human Anatomy & Organ Systems",
-    category: "Human Anatomy",
-    level: "Intermediate",
-    progress: 60,
-    accentColor: "#3b82f6",
-    lessonsCount: 10,
-    targetPath: "/virtual-robot"
-  },
-  {
-    id: "neu-301",
-    title: "Fundamentals of Neuroscience",
-    category: "Neuroscience",
-    level: "Intermediate",
-    progress: 15,
-    accentColor: "#a855f7",
-    lessonsCount: 12,
-    targetPath: "/teleop"
-  },
-  {
-    id: "neu-401",
-    title: "Cognitive Neuroscience",
-    category: "Advanced Neuroscience",
-    level: "Advanced",
-    progress: 0,
-    accentColor: "#ef4444",
-    lessonsCount: 14,
-    targetPath: "/dashboard"
-  },
-];
+export default function Modules() {
+  const modulesList = [
+    {
+      id: 1,
+      title: "Foundations of Human Biology",
+      category: "Human Biology",
+      units: "8 Units",
+      level: "Beginner",
+      progress: "100%",
+      status: "completed"
+    },
+    {
+      id: 2,
+      title: "Human Anatomy & Organ Systems",
+      category: "Human Anatomy",
+      units: "10 Units",
+      level: "Intermediate",
+      progress: "60%",
+      status: "active"
+    },
+    {
+      id: 3,
+      title: "Fundamentals of Neuroscience",
+      category: "Neuroscience",
+      units: "12 Units",
+      level: "Intermediate",
+      progress: "15%",
+      status: "active"
+    }
+  ];
 
-function Modules() {
   return (
     <div className="modules-page">
-      <Navbar isOnline={true} version="1.0.0" />
+      <header className="modules-header">
+        <h1>CURRICULUM MATRIX</h1>
+        <p>Select a learning pathway to begin your interactive study session.</p>
+      </header>
 
-      <main className="main-content">
-        <section className="page-header">
-          <h1 className="page-title">CURRICULUM MATRIX</h1>
-          <p className="page-subtitle">Select a learning pathway</p>
-        </section>
-
-        <section className="modules-grid">
-          {MODULES_DATA.map((mod) => (
-            <div
-              key={mod.id}
-              className="module-card"
-              style={{ borderLeftColor: mod.accentColor }}
-            >
-              <div className="module-header">
-                <span
-                  className="module-level"
-                  style={{ color: mod.accentColor }}
-                >
-                  {mod.level}
-                </span>
-                <span className="module-duration">{mod.lessonsCount} Units</span>
+      <div className="modules-layout">
+        <div className="modules-grid">
+          {modulesList.map((mod) => (
+            <div key={mod.id} className={`module-card ${mod.level.toLowerCase()}`}>
+              <div>
+                <span className="module-badge">{mod.level} // {mod.units}</span>
+                <h2>{mod.title}</h2>
+                <p className="module-cat">{mod.category}</p>
               </div>
-
-              <h3 className="module-title">{mod.title}</h3>
-              <p className="module-category">{mod.category}</p>
-
-              <div className="module-progress">
-                <div className="progress-track">
-                  <div
-                    className="progress-fill"
-                    style={{
-                      width: `${mod.progress}%`,
-                      background: mod.accentColor,
-                    }}
-                  />
+              <div className="module-footer">
+                <div className="progress-bar">
+                  <div className="progress-fill" style={{ width: mod.progress }}></div>
                 </div>
-                <span className="progress-text">{mod.progress}%</span>
+                <span className="progress-text">{mod.progress}</span>
+                <button className="enter-lesson-btn">→ Enter Module</button>
               </div>
-
-              <Link to={mod.targetPath} className="module-link">
-                Enter Module →
-              </Link>
             </div>
           ))}
-        </section>
-      </main>
+        </div>
+
+        <aside className="mimo-side-panel">
+          <div className="mimo-header">
+            <span className="status-dot online"></span>
+            <h3>MIMO COMPANION</h3>
+          </div>
+          <p className="mimo-desc">
+            Virtual assistant ready to assist with 3D visualizations and module queries.
+          </p>
+          <div className="mimo-preview" style={{ height: '200px', display: 'flex', alignItems: 'center', justifyContent: 'center', background: 'rgba(11, 14, 20, 0.6)', borderRadius: '8px' }}>
+            <span style={{ color: '#38bdf8', fontFamily: 'monospace' }}>[ MIMO 3D LOADING... ]</span>
+          </div>
+          <button className="mimo-action-btn">Ask Mimo</button>
+        </aside>
+      </div>
     </div>
   );
 }
-
-export default Modules;
