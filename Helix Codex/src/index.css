@@ -42,12 +42,16 @@
 body {
   font-family: var(--font-body);
   color: var(--text-primary);
-  background: #283048;
-  background: -webkit-linear-gradient(to right, #859398, #283048);
-  background: linear-gradient(to right, #859398, #283048);
-  background-attachment: fixed;
   line-height: 1.5;
   overflow-x: hidden;
+  background-color: #283048 !important;
+  background-image: 
+    linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+    linear-gradient(to right, rgba(133, 147, 152, 0.3), rgba(40, 48, 72, 0.9)) !important;
+  background-size: 40px 40px, 40px 40px, 100% 100% !important;
+  background-position: -1px -1px, -1px -1px, 0 0 !important;
+  background-attachment: fixed !important;
 }
 
 #root {
