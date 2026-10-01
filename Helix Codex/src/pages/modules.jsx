@@ -71,8 +71,8 @@ export default function Modules() {
             Virtual assistant ready to assist with 3D visualizations and module queries.
           </p>
 
-          <div className="mimo-preview" style={{ height: '240px', borderRadius: '8px', overflow: 'hidden', background: 'rgba(11, 14, 20, 0.6)' }}>
-            <Canvas camera={{ position: [0, 1, 3], fov: 50 }}>
+          <div className="mimo-preview" style={{ height: '380px', borderRadius: '12px', overflow: 'hidden', background: 'rgba(11, 14, 20, 0.6)' }}>
+            <Canvas camera={{ position: [0, 0.5, 5.5], fov: 45 }}>
               <ambientLight intensity={1.5} />
               <directionalLight position={[5, 5, 5]} intensity={1.2} />
               <VirtualRobot />
