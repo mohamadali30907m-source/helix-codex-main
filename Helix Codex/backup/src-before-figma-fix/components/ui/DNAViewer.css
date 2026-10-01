@@ -1,0 +1,1 @@
+.dna-container { height: 280px !important; width: 100% !important; display: flex !important; justify-content: center !important; align-items: center !important; position: relative !important; margin-bottom: 1.5rem !important; } .dna-container canvas { max-height: 100% !important; width: auto !important; }
