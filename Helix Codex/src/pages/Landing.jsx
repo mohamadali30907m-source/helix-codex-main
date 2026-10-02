@@ -1,4 +1,5 @@
-import Navbar from "../components/layout/Navbar";
+import React from "react";
+import { useNavigate } from "react-router-dom";
 import DNAViewer from "../components/ui/DNAViewer";
 import PrimaryButton from "../components/ui/PrimaryButton";
 import "./Landing.css";
@@ -9,10 +10,15 @@ function Landing({
   coreStatus = "ACTIVE", 
   onInitialize 
 }) {
+  const navigate = useNavigate();
+  const handleStart = () => {
+    if (onInitialize) onInitialize();
+    navigate('/modules');
+  };
+
   return (
     <div className="landing-page">
-      <Navbar isOnline={isOnline} version={version} />
-
+      
       <main className="main-content">
         <section className="hero-section">
           <DNAViewer status={coreStatus} />
@@ -30,7 +36,7 @@ function Landing({
 
           <div className="cta-wrapper">
             <PrimaryButton 
-              onClick={onInitialize}
+              onClick={handleStart}
               disabled={!isOnline}
             />
           </div>
