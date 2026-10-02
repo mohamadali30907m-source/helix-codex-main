@@ -73,6 +73,7 @@ Telemetry Dashboard: Live status metrics for battery, connection, and joint angl
 
 ![Telemetry Dashboard](https://github.com/mohamadali30907m-source/helix-codex-main/blob/83f53635b45e78765681d7185790e6d631ab5650/Screenshot%20(447).png)
 
+![Dr. Selya's scenario modules](https://github.com/mohamadali30907m-source/helix-codex-main/blob/4ce32a32f32d146a174d949aed2b10d76e503b53/Screenshot%20(572).png)
 
 ## Architecture 
 
