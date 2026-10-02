@@ -182,6 +182,87 @@
   cursor: pointer;
 }
 
+.mimo-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(5px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.mimo-modal-card {
+  background: #0f172a;
+  border: 1px solid rgba(56, 189, 248, 0.2);
+  border-radius: 12px;
+  padding: 24px;
+  width: 90%;
+  max-width: 420px;
+  position: relative;
+  color: #e2e8f0;
+}
+
+.close-modal-btn {
+  position: absolute;
+  top: 12px;
+  right: 16px;
+  background: transparent;
+  border: none;
+  color: #94a3b8;
+  font-size: 22px;
+  cursor: pointer;
+}
+
+.modal-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.modal-intro {
+  color: #94a3b8;
+  font-size: 0.9rem;
+  margin-bottom: 14px;
+}
+
+.mimo-features-list {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 18px 0;
+}
+
+.mimo-features-list li {
+  padding: 6px 0;
+  color: #cbd5e1;
+  font-size: 0.88rem;
+}
+
+.stay-tuned-banner {
+  text-align: center;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  padding-top: 14px;
+  margin-top: 10px;
+}
+
+.stay-tuned-banner h2 {
+  margin: 0;
+  color: #38bdf8;
+  font-size: 1.2rem;
+  letter-spacing: 1.5px;
+}
+
+.stay-tuned-banner p {
+  margin: 4px 0 0 0;
+  font-size: 0.8rem;
+  color: #64748b;
+}
+
 @media (max-width: 992px) {
   .modules-layout {
     grid-template-columns: 1fr;

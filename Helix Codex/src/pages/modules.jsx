@@ -1,10 +1,14 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import './Modules.css';
 import { Canvas } from '@react-three/fiber';
 import { OrbitControls } from '@react-three/drei';
 import VirtualRobot from '../components/VirtualRobot/VirtualRobot';
 
 export default function Modules() {
+  const navigate = useNavigate();
+  const [showMimoModal, setShowMimoModal] = useState(false);
+
   const modulesList = [
     {
       id: 1,
@@ -35,11 +39,17 @@ export default function Modules() {
     }
   ];
 
+  const handleEnterModule = (modId) => {
+    if (modId === 1) {
+      navigate('/lesson/human-physiology-selya');
+    }
+  };
+
   return (
     <div className="modules-page">
       <header className="modules-header">
         <h1>CURRICULUM MATRIX</h1>
-        <p>Select a learning pathway to begin your interactive study session.</p>
+        <p>Select a learning pathway to begin your interactive study session</p>
       </header>
 
       <div className="modules-layout">
@@ -56,7 +66,14 @@ export default function Modules() {
                   <div className="progress-fill" style={{ width: mod.progress }}></div>
                 </div>
                 <span className="progress-text">{mod.progress}</span>
-                <button className="enter-lesson-btn">→ Enter Module</button>
+                <button 
+                  type="button"
+                  className="enter-lesson-btn"
+                  onClick={() => handleEnterModule(mod.id)}
+                  style={{ cursor: 'pointer' }}
+                >
+                  → Enter Module
+                </button>
               </div>
             </div>
           ))}
@@ -80,9 +97,44 @@ export default function Modules() {
             </Canvas>
           </div>
 
-          <button className="mimo-action-btn">Ask Mimo</button>
+          <button 
+            className="mimo-action-btn"
+            onClick={() => setShowMimoModal(true)}
+          >
+            Ask Mimo
+          </button>
         </aside>
       </div>
+
+      {/* Mimo Assistant Popup Modal */}
+      {showMimoModal && (
+        <div className="mimo-modal-overlay" onClick={() => setShowMimoModal(false)}>
+          <div className="mimo-modal-card" onClick={(e) => e.stopPropagation()}>
+            <button className="close-modal-btn" onClick={() => setShowMimoModal(false)}>×</button>
+            
+            <div className="modal-header">
+              <span className="status-dot online"></span>
+              <h3>Mimo Assistant</h3>
+            </div>
+            
+            <p className="modal-intro">
+              Here is what Mimo will help you with during your study sessions:
+            </p>
+            
+            <ul className="mimo-features-list">
+              <li>• Answering questions about lessons in real time</li>
+              <li>• Explaining complex 3D models step by step</li>
+              <li>• Creating quick quizzes to test your understanding</li>
+              <li>• Tracking your overall study progress</li>
+            </ul>
+
+            <div className="stay-tuned-banner">
+              <h2>STAY TUNED</h2>
+              <p>Full interaction features coming in the next update!</p>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
