@@ -16,7 +16,7 @@
 }
 
 .teleop-page {
-  min-height: 100vh;
+  min-height: calc(100vh - 65px);
   background-color: var(--bg-primary);
   background-image: 
     linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
@@ -24,11 +24,12 @@
   background-size: 30px 30px;
   color: var(--text-main);
   font-family: var(--font-interface);
+  padding-top: 10px; 
 }
 
 .page-header {
-  text-align: right;
-  padding: 24px 32px 8px;
+  text-align: left; 
+  padding: 16px 32px 8px;
   max-width: 1400px;
   margin: 0 auto;
 }
