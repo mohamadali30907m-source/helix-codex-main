@@ -1,7 +1,6 @@
 import { useEffect, useState, useCallback, useRef } from "react";
 import { Canvas } from "@react-three/fiber";
 import { OrbitControls } from "@react-three/drei";
-import Navbar from "../components/layout/Navbar";
 import VirtualRobot from "../components/VirtualRobot/VirtualRobot";
 import "./Teleop.css";
 
@@ -176,8 +175,6 @@ function Teleop() {
 
   return (
     <div className="teleop-page">
-      <Navbar />
-
       <main className="main-content">
         <header className="page-header">
           <h1 className="page-title">TELEOPERATION</h1>
