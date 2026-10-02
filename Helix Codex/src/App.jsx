@@ -3,8 +3,8 @@ import { Routes, Route } from 'react-router-dom';
 import Navbar from './components/layout/Navbar';
 import Landing from './pages/Landing';
 import Modules from './pages/modules';
-import Dashboard from './pages/Dashboard';
-import Teleop from './pages/Teleop';
+import Dashboard from './pages/dashboard';
+import Teleop from './pages/teleop';
 import LessonView from './pages/LessonView';
 
 function App() {
