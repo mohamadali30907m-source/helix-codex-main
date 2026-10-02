@@ -2,7 +2,7 @@ import React from 'react';
 import { Routes, Route } from 'react-router-dom';
 import Navbar from './components/layout/Navbar';
 import Landing from './pages/Landing';
-import Modules from './pages/Modules';
+import Modules from './pages/modules';
 import Dashboard from './pages/Dashboard';
 import Teleop from './pages/Teleop';
 import LessonView from './pages/LessonView';
