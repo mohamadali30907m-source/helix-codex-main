@@ -1,11 +1,10 @@
-import Navbar from "../components/layout/Navbar";
+import React from "react";
 import "./Dashboard.css";
 
 function Dashboard() {
   return (
     <div className="dashboard-page">
-      <Navbar isOnline={true} version="1.0.0" />
-
+      
       <main className="main-content">
         <section className="page-header">
           <h1 className="page-title">SYSTEM DASHBOARD</h1>
