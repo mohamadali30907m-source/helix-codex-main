@@ -1,0 +1,191 @@
+.lesson-container {
+  min-height: calc(100vh - 70px);
+  padding: 1.5rem 2rem;
+  max-width: 1250px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 1.5rem;
+}
+
+.lesson-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.back-btn {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(56, 189, 248, 0.3);
+  color: #38bdf8;
+  padding: 0.5rem 1.2rem;
+  border-radius: 8px;
+  cursor: pointer;
+  font-family: 'JetBrains Mono', monospace;
+  transition: all 0.2s ease;
+}
+
+.back-btn:hover {
+  background: rgba(56, 189, 248, 0.15);
+}
+
+.lesson-progress-badge {
+  background: rgba(56, 189, 248, 0.1);
+  color: #38bdf8;
+  border: 1px solid rgba(56, 189, 248, 0.2);
+  padding: 0.4rem 1rem;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-family: 'JetBrains Mono', monospace;
+}
+
+.lesson-content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  align-items: center;
+}
+
+.story-card {
+  background: rgba(20, 26, 40, 0.65);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 16px;
+  padding: 1.5rem;
+}
+
+.image-wrapper {
+  position: relative;
+  width: 100%;
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid rgba(56, 189, 248, 0.2);
+}
+
+.selya-img {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: cover;
+}
+
+.chapter-tag {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  background: rgba(11, 14, 20, 0.85);
+  color: #38bdf8;
+  padding: 0.3rem 0.8rem;
+  border-radius: 6px;
+  font-size: 0.8rem;
+  font-weight: bold;
+}
+
+.concept-badge {
+  display: inline-block;
+  color: #38bdf8;
+  font-size: 0.85rem;
+  font-family: 'JetBrains Mono', monospace;
+  margin-bottom: 0.5rem;
+}
+
+.text-card h2 {
+  font-size: 1.8rem;
+  color: #ffffff;
+  margin-bottom: 1rem;
+}
+
+.story-text {
+  color: #c0caf5;
+  line-height: 1.6;
+  font-size: 1.05rem;
+  margin-bottom: 1.5rem;
+}
+
+.key-takeaway {
+  background: rgba(56, 189, 248, 0.05);
+  border-left: 3px solid #38bdf8;
+  padding: 1rem;
+  border-radius: 0 8px 8px 0;
+  margin-bottom: 1rem;
+}
+
+.key-takeaway h4 {
+  color: #38bdf8;
+  margin-bottom: 0.4rem;
+}
+
+.key-takeaway p {
+  color: #aeb8d0;
+  font-size: 0.95rem;
+  margin: 0;
+}
+
+.formula-box {
+  background: rgba(0, 0, 0, 0.4);
+  padding: 0.8rem;
+  border-radius: 8px;
+  border: 1px dashed rgba(56, 189, 248, 0.3);
+  text-align: center;
+}
+
+.formula-box code {
+  color: #7dd3fc;
+  font-family: 'JetBrains Mono', monospace;
+}
+
+.lesson-controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: rgba(20, 26, 40, 0.4);
+  padding: 1rem 1.5rem;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.nav-btn {
+  background: #38bdf8;
+  color: #0b0e14;
+  border: none;
+  padding: 0.6rem 1.4rem;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.nav-btn:hover:not(:disabled) {
+  background: #7dd3fc;
+  transform: translateY(-1px);
+}
+
+.nav-btn:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
+.step-dots {
+  display: flex;
+  gap: 8px;
+}
+
+.dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.2);
+  cursor: pointer;
+}
+
+.dot.active {
+  background: #38bdf8;
+  box-shadow: 0 0 8px #38bdf8;
+}
+
+@media (max-width: 900px) {
+  .lesson-content {
+    grid-template-columns: 1fr;
+  }
+}
