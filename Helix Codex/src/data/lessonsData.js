@@ -1,6 +1,6 @@
-import selyaImg1 from '../assets/selya-chapter3.jpg';
-import selyaImg2 from '../assets/selya-chapter2.jpg';
-import selyaImg3 from '../assets/selya-chapter1.jpg';
+import selyaImg1 from '../assets/Screenshot (581).png';
+import selyaImg2 from '../assets/Screenshot (581).png';
+import selyaImg3 from '../assets/Screenshot (581).png';
 
 export const SELYA_LESSON = {
   id: "human-physiology-selya",
